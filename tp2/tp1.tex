@@ -1,0 +1,229 @@
+\documentclass[]{article}
+\usepackage[french]{babel}
+\usepackage[autolanguage]{numprint}
+\usepackage{hyphenat}
+\usepackage{listings}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{hyperref,graphicx} 
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+\title{Projet 2 -- Commutateur, Routeur, ARP et DHCP}
+\author{Équipe 0: Étienne et Florent Parent} % TODO: mettre votre nom
+\date{date de remise} % TODO: mettre la date de remise
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Configuration}
+
+\begin{enumerate}
+
+    \item Votre réponse à la question 1. Voir résultat du \texttt{ping}~\ref{fig:ping-pc1-pc2}.
+
+    \begin{figure} 
+        \centering
+        \begin{lstlisting}
+$ ping google.ca
+PING google.ca (172.217.13.99) 56(84) bytes of data.
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=1 ttl=119 time=22.0 ms
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=2 ttl=119 time=38.4 ms
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=3 ttl=119 time=197 ms
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=4 ttl=119 time=37.6 ms
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=5 ttl=119 time=43.5 ms
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=6 ttl=119 time=42.4 ms
+        \end{lstlisting}
+        \caption[]{Ping du PC1 au PC2}
+        \label{fig:ping-pc1-pc2}
+    \end{figure}
+
+    \item Mon NI est le \texttt{XXX XXX XXX} Voici les adresses assignées:
+    
+    % Table des addresses
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{Subnet} & \textbf{Adresse IP} \\
+            \hline
+            TODO & \texttt{A.B.C.D/X} \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \item L'adresse IP choisie pour le PC1 est \texttt{A.B.C.D/X} parce que... Le ping ...
+          parce que ...
+    \item L'adresse IP choisie pour le PC4 est \texttt{A.B.C.D/X} parce que... Le ping ...
+          parce que ...
+
+\end{enumerate}
+
+\section*{Adresses locales IPv6}
+
+\begin{enumerate}
+    \item Le ping ... parce que ...
+    \item Le ping ... parce que ...
+    \item Le ping ... parce que ...
+    \item J'en conclus que...
+\end{enumerate}
+
+\section*{Tables d'apprentissage du commutateur}
+
+\begin{enumerate}
+    \item Il existe des entrées pour... mais pas pour ... et ça a du sens parce que ...
+    \item Il existe des entrées pour... mais pas pour ... et ça a du sens parce que ...
+    \item Les entrées sont ... parce que ...
+
+    \item L'adresse IP source du ping est \texttt{A.B.C.D} alors que l'adresse destination
+          est \texttt{E.F.G.H}. Ces adresses correspondent à ... et ... Ces adresses ... en
+          transit parce que ...
+    \item L'adresse MAC source du ping est \texttt{XX:XX:XX:XX:XX:XX} alors que l'adresse
+          MAC destination est \texttt{YY:YY:YY:YY:YY:YY}. Ces adresses correspondent à ... et ...
+          Ces adresses ... en transit parce que ...
+    \item J'en conclus que ...
+    \item J'en conclus que ...
+\end{enumerate}
+
+\section*{ARP}
+
+\begin{enumerate}
+    \item Le commutateur ... parce que ...
+    \item Voici les entrées dans la table ARP du commutateur S1:
+    
+    \begin{itemize}
+        \item \texttt{A.B.C.D} $\rightarrow$ \texttt{XX:XX:XX:XX:XX:XX}: Cette entrée correspond
+              à ... et ça a du sens qu'elle soit là parce que ...
+    \end{itemize}
+
+    Ou sinon la table est vide parce que ...
+    \item Voici les entrées dans la table ARP du commutateur PC1:
+    
+    \begin{itemize}
+        \item \texttt{A.B.C.D} $\rightarrow$ \texttt{XX:XX:XX:XX:XX:XX}: Cette entrée correspond
+              à ... et ça a du sens qu'elle soit là parce que ...
+    \end{itemize}
+
+    Ou sinon la table est vide parce que ...
+\end{enumerate}
+
+\section*{DHCP}
+
+\begin{enumerate}
+    \item Ma capture Wireshark est présentée à la figure~\ref{fig:wireshark-dhcp}.
+
+    \begin{figure} 
+        \centering
+        \includegraphics[width=0.8\textwidth]{rickroll.jpg} % TODO
+        \caption[]{Capture Wireshark d'un échange DHCP.}
+        \label{fig:wireshark-dhcp}
+    \end{figure}
+
+    \item Les datagrammes ... parce que ...
+
+    \item Les différents paramètres envoyés sont les suivants:
+
+    \begin{itemize}
+        \item Param 1: Ce paramètre est utile parce que ...
+    \end{itemize}
+
+    Il pourrait aussi y avoir d'autres paramètres comme ...
+
+    \item L'adresse source était \texttt{A.B.C.D} et l'adresse destination était
+          \texttt{E.F.G.H}. Ces adresses correspondent à ... et ... Elles sont
+          utilisées parce que ...
+
+\end{enumerate}
+
+\section*{ARP (suite)}
+
+\begin{enumerate}
+    \item L'état de la table ARP de S1 est présenté à la figure~\ref{fig:arp-table-s1}.
+
+    \begin{figure} 
+        \centering
+        \begin{lstlisting}
+$ arp -a
+? (A.B.C.D) at XX:XX:XX:XX:XX:XX [ether] on eth0
+? (E.F.G.H) at YY:YY:YY:YY:YY:YY [ether] on eth0
+        \end{lstlisting}
+        \caption[]{Table ARP de S1.}
+        \label{fig:arp-table-s1}
+    \end{figure}
+
+    Voici ce à quoi correspondent les entrées:
+
+    \begin{itemize}
+        \item \texttt{A.B.C.D} $\rightarrow$ \texttt{XX:XX:XX:XX:XX:XX}: Cette entrée correspond
+              à ... et ça a du sens qu'elle soit là parce que ...
+        \item \texttt{E.F.G.H} $\rightarrow$ \texttt{YY:YY:YY:YY:YY:YY}: Cette entrée correspond
+              à ... et ça a du sens qu'elle soit là parce que ...
+    \end{itemize}
+
+    Ou sinon la table est vide parce que ...
+
+    \item L'était de la table ARP de PC1 est présentée à la figure~\ref{fig:arp-table-pc1}.
+    \begin{figure}
+        \centering
+        \begin{lstlisting}
+$ arp -a
+? (A.B.C.D) at XX:XX:XX:XX:XX:XX [ether] on eth0
+? (E.F.G.H) at YY:YY:YY:YY:YY:YY [ether] on eth0
+        \end{lstlisting}
+        \caption[]{Table ARP du PC1.}
+        \label{fig:arp-table-pc1}
+    \end{figure}
+
+    Voici ce à quoi correspondent les entrées:
+
+    \begin{itemize}
+        \item \texttt{A.B.C.D} $\rightarrow$ \texttt{XX:XX:XX:XX:XX:XX}: Cette entrée correspond
+              à ... et ça a du sens qu'elle soit là parce que ...
+        \item \texttt{E.F.G.H} $\rightarrow$ \texttt{YY:YY:YY:YY:YY:YY}: Cette entrée correspond
+              à ... et ça a du sens qu'elle soit là parce que ...
+    \end{itemize}
+
+    Ou sinon la table est vide parce que ...
+
+\end{enumerate}
+
+\section*{IP et Ethernet}
+
+\subsection*{IP}
+
+\begin{enumerate}
+    \item L'adresse MAC source de la trame entre PC1 et S1 est \texttt{XX:XX:XX:XX:XX:XX} et
+          l'adresse MAC destination est \texttt{YY:YY:YY:YY:YY:YY}.
+    \item L'adresse MAC source de la trame entre S1 et S2 est \texttt{XX:XX:XX:XX:XX:XX} et
+          l'adresse MAC destination est \texttt{YY:YY:YY:YY:YY:YY}.
+    \item L'adresse MAC source de la trame entre S2 et R1 est \texttt{XX:XX:XX:XX:XX:XX} et
+          l'adresse MAC destination est \texttt{YY:YY:YY:YY:YY:YY}.
+    \item L'adresse MAC source de la trame entre R1 et PC4 est \texttt{XX:XX:XX:XX:XX:XX} et
+          l'adresse MAC destination est \texttt{YY:YY:YY:YY:YY:YY}.
+    \item Les adresses ont changé entre aux étapes x et y parce que ...
+          Ou elles n'ont jamais changé parce que ...
+\end{enumerate}
+
+\subsection*{Ethernet}
+
+\begin{enumerate}
+    \item L'adresse IP source du datagramme entre PC1 et S1 est \texttt{A.B.C.D} et
+          l'adresse IP destination est \texttt{E.F.G.H}.
+    \item L'adresse IP source du datagramme entre S1 et S2 est \texttt{A.B.C.D} et
+          l'adresse IP destination est \texttt{E.F.G.H}.
+    \item L'adresse IP source du datagramme entre S2 et R1 est \texttt{A.B.C.D} et
+          l'adresse IP destination est \texttt{E.F.G.H}.
+    \item L'adresse IP source du datagramme entre R1 et PC4 est \texttt{A.B.C.D} et
+          l'adresse IP destination est \texttt{E.F.G.H}.
+    \item Les adresses ont changé entre aux étapes x et y parce que ...
+            Ou elles n'ont jamais changé parce que ...
+\end{enumerate}
+    
+\end{document}
