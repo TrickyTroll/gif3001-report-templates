@@ -4,3 +4,5 @@ Gabarit à utiliser lors de la réalisation du rapport du projet 2 dans le cadre
 GIF3001.
 
 Ce gabarit accélère non seulement la rédaction de votre rapport mais aussi la correction ;-).
+
+Un exemple de ce à quoi devrait ressembler votre rapport est disponible sous [tp1.pdf](./tp1.pdf).
