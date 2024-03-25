@@ -180,7 +180,14 @@ Avant de pousuivre, nous nous sommes assurés que les routes par défaut on ét�
 
 \subsection*{OSPFv2}
 
-Mon réseau fonctionne comme en témoigne le \texttt{ping} entre PC1 et PC2 présenté à la figure~\ref{fig:ping-pc1-pc2-ospfv2}.
+\begin{itemize}
+      \item Mon réseau fonctionne comme en témoigne le \texttt{ping} entre PC1 et PC2
+            présenté à la figure~\ref{fig:ping-pc1-pc2-ospfv2}.
+      \item La table de routage du routeur R1 est présentée à la
+            figure~\ref{fig:ospfv2-routes-r1}.
+      \item La route utilisée pour atteindre le PC2 est...
+      \item C'est / ce n'est pas la route la plus courte.
+\end{itemize}
 
 \begin{figure} 
       \centering
@@ -190,8 +197,6 @@ $ ping google.ca
       \caption[]{Ping du PC1 au PC2 pour la section OSPFv2}
       \label{fig:ping-pc1-pc2-ospfv2}
 \end{figure}
-
-La table de routage du routeur R1 est présentée à la figure~\ref{fig:ospfv2-routes-r1}.
 
 \begin{figure} 
       \centering
@@ -203,13 +208,17 @@ $ show ip route
       \label{fig:ospfv2-routes-r1}
 \end{figure}
 
-La route utilisée pour atteindre le PC2 est...
-
-C'est / ce n'est pas la route la plus courte.
 
 \subsection*{OSPFv3}
 
-Mon réseau fonctionne comme en témoigne le \texttt{ping6} entre PC1 et PC2 présenté à la figure~\ref{fig:ping6-pc1-pc2-ospfv2}.
+\begin{itemize}
+      \item  Mon réseau fonctionne comme en témoigne le \texttt{ping6} entre PC1 et PC2
+             présenté à la figure~\ref{fig:ping6-pc1-pc2-ospfv2}.
+      \item  La table de routage du routeur R1 est présentée à la figure~\ref{fig:ospfv3-routes-r1}.
+      \item  La route utilisée pour atteindre le PC2 est...
+      \item  C'est / ce n'est pas la route la plus courte.
+\end{itemize}
+
 
 \begin{figure} 
       \centering
@@ -220,7 +229,6 @@ $ ping6 google.ca
       \label{fig:ping6-pc1-pc2-ospfv2}
 \end{figure}
 
-La table de routage du routeur R1 est présentée à la figure~\ref{fig:ospfv3-routes-r1}.
 
 \begin{figure} 
       \centering
@@ -232,9 +240,6 @@ $ show ip route
       \label{fig:ospfv3-routes-r1}
 \end{figure}
 
-La route utilisée pour atteindre le PC2 est...
-
-C'est / ce n'est pas la route la plus courte.
 
 \subsection*{Routage et changement de lien}
 
