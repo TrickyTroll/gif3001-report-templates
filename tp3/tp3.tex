@@ -1,0 +1,293 @@
+\documentclass[]{article}
+\usepackage[french]{babel}
+\usepackage[autolanguage]{numprint}
+\usepackage[T1]{fontenc}
+\usepackage{hyphenat}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{hyperref,graphicx, caption} 
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+\title{Projet 3 -- Adressage et routage IP}
+\author{Équipe 0: Étienne et Florent Parent} % TODO: mettre votre nom
+\date{date de remise} % TODO: mettre la date de remise
+
+\begin{document}
+
+\maketitle
+
+\section*{Adressage et configuration d'un réseau IP}
+
+Notre plan d'adressage est présenté dans le tableau~\ref{tab:plan-adressage}.
+
+% À noter que ce tableau peut servir pour présenter le plan d'adressage du projet en entier.
+% Il n'est donc pas nécessaire d'en faire un pour chaque section (IPv4, IPv6 et routage OSPF)
+
+\begin{center}
+      \begin{table}
+            \begin{tabular}{ c c c c c }
+                  \toprule
+                  \textbf{Appareil} & \textbf{Interface} & \textbf{Adresse IPv4} & \textbf{Masque IPv4} & \textbf{Adresse IPv6}\\
+                  \toprule
+                  PC1 & \texttt{eth0} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+                  \midrule
+                  PC2 & \texttt{eth0} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+                  \midrule
+                  R1 & \texttt{eth0} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+                  R1 & \texttt{eth1} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+                  R1 & \texttt{eth2} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+                  \midrule
+                  R2 & \texttt{eth0} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+                  R2 & \texttt{eth1} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+                  R2 & \texttt{eth2} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+                  \midrule
+                  R3 & \texttt{eth0} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+                  R3 & \texttt{eth1} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+                  R3 & \texttt{eth2} & \texttt{A.B.C.D} & \texttt{E.F.G.H} & \texttt{I:J:K:L:M:N:O:P}\\
+            \end{tabular}
+            \caption{Plan d'adressage IPv4 et IPv6.}
+            \label{tab:plan-adressage}
+      \end{table}
+\end{center}
+
+\subsection*{Plan d'adressage IPv4 et IPv6}
+
+\begin{enumerate}
+      \item La configuration de mon routeur R1 est présentée à la figure~\ref{fig:ipv4-config-r1}. La configuration
+            de mon routeur R2 est présentée à la figure~\ref{fig:ipv4-config-r2}.
+      \item Les routes statiques cofigurées sur PC1 et PC2 sont présentées à la figure~\ref{fig:routes-pc1-pc2}.
+      \item  Le résultat du \texttt{ping} entre PC1 et PC2 est présenté à la figure~\ref{fig:ping-pc1-pc2}.
+\end{enumerate}
+
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ ping google.ca
+PING google.ca (172.217.13.99) 56(84) bytes of data.
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=1 ttl=119 time=22.0 ms
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=2 ttl=119 time=38.4 ms
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=3 ttl=119 time=197 ms
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=4 ttl=119 time=37.6 ms
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=5 ttl=119 time=43.5 ms
+64 bytes from yul02s04-in-f3.1e100.net (172.217.13.99): icmp_seq=6 ttl=119 time=42.4 ms
+      \end{lstlisting}
+      \caption[]{Ping du PC1 au PC2}
+      \label{fig:ping-pc1-pc2}
+\end{figure}
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ show running-config
+...
+      \end{lstlisting}
+      \caption[]{Configuration du routeur R1 pour la configuration de réseau IPv4.}
+      \label{fig:ipv4-config-r1}
+\end{figure}
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ show running-config 
+...
+      \end{lstlisting}
+      \caption[]{Configuration du routeur R2 pour rla configuration de réseau IPv4.}
+      \label{fig:ipv4-config-r2}
+\end{figure}
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ ip route
+...
+
+$ ip route
+...
+      \end{lstlisting}
+      \caption[]{Routes par défaut configurées sur PC1 et PC2.}
+      \label{fig:routes-pc1-pc2}
+\end{figure}
+
+\subsection*{Configuration du réseau IPv6}
+
+Mon plan d'adressage IPv6 est présenté dans le tableau~\ref{tab:plan-adressage}.
+
+\begin{enumerate}
+      \item La configuration de mon routeur R1 est présentée à la figure~\ref{fig:ipv6-config-r1}. La configuration
+            de mon routeur R2 est présentée à la figure~\ref{fig:ipv6-config-r2}.
+      \item Les routes statiques cofigurées sur PC1 et PC2 sont présentées à la figure~\ref{fig:ipv6-routes-pc1-pc2}.
+      \item  Le résultat du \texttt{ping} entre PC1 et PC2 est présenté à la figure~\ref{fig:ping6-pc1-pc2}.
+\end{enumerate}
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ ping6 google.com
+      \end{lstlisting}
+      \caption[]{Ping du PC1 au PC2}
+      \label{fig:ping6-pc1-pc2}
+\end{figure}
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ show running-config
+...
+      \end{lstlisting}
+      \caption[]{Configuration du routeur R1 pour la configuration de réseau IPv6.}
+      \label{fig:ipv6-config-r1}
+\end{figure}
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ show running-config 
+...
+      \end{lstlisting}
+      \caption[]{Configuration du routeur R2 pour rla configuration de réseau IPv6.}
+      \label{fig:ipv6-config-r2}
+\end{figure}
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ ip route
+...
+
+$ ip route
+...
+      \end{lstlisting}
+      \caption[]{Routes IPv6 autoconfigurées sur PC1 et PC2.}
+      \label{fig:ipv6-routes-pc1-pc2}
+\end{figure}
+
+\section*{Routage OSPF}
+
+Le tableau~\ref{tab:plan-adressage} a été augmenté pour contenie les adresses des interfaces
+du routeur R3.
+
+Avant de pousuivre, nous nous sommes assurés que les routes par défaut on été retirées.
+
+\subsection*{OSPFv2}
+
+Mon réseau fonctionne comme en témoigne le \texttt{ping} entre PC1 et PC2 présenté à la figure~\ref{fig:ping-pc1-pc2-ospfv2}.
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ ping google.ca
+      \end{lstlisting}
+      \caption[]{Ping du PC1 au PC2 pour la section OSPFv2}
+      \label{fig:ping-pc1-pc2-ospfv2}
+\end{figure}
+
+La table de routage du routeur R1 est présentée à la figure~\ref{fig:ospfv2-routes-r1}.
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ show ip route
+...
+      \end{lstlisting}
+      \caption[]{Table de routage du routeur R1 avec OSPFv2.}
+      \label{fig:ospfv2-routes-r1}
+\end{figure}
+
+La route utilisée pour atteindre le PC2 est...
+
+C'est / ce n'est pas la route la plus courte.
+
+\subsection*{OSPFv3}
+
+Mon réseau fonctionne comme en témoigne le \texttt{ping6} entre PC1 et PC2 présenté à la figure~\ref{fig:ping6-pc1-pc2-ospfv2}.
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ ping6 google.ca
+      \end{lstlisting}
+      \caption[]{Ping6 du PC1 au PC2 pour la section OSPFv3}
+      \label{fig:ping6-pc1-pc2-ospfv2}
+\end{figure}
+
+La table de routage du routeur R1 est présentée à la figure~\ref{fig:ospfv3-routes-r1}.
+
+\begin{figure} 
+      \centering
+      \begin{lstlisting}
+$ show ip route
+...
+      \end{lstlisting}
+      \caption[]{Table de routage du routeur R1 avec OSPFv3.}
+      \label{fig:ospfv3-routes-r1}
+\end{figure}
+
+La route utilisée pour atteindre le PC2 est...
+
+C'est / ce n'est pas la route la plus courte.
+
+\subsection*{Routage et changement de lien}
+
+\begin{enumerate}
+      \item  Suite à l'ajout du délais, la route utilisée pour atteindre le PC2 est...
+      \item Le temps d'aller-retour entre PC1 et PC2 est initialement...
+      \item À partir de la table de routage de R2, nous observons que le cout du lien pour rejoindre 
+            le réseau du PC1 est...
+      \item Il faudrait un cout de ... pour que le lien passant par R3 soit utilisé.
+      \item Suite à la modification du cout, le délais a / n'a pas diminué. On peut expliquer cela par...
+      \item Les paquets passent / ne passent maintenant (toujours pas) par R3 comme en témoigne la sortie
+            de la commande \texttt{traceroute} présentée à la figure~\ref{fig:traceroute-pc1-pc2}.
+\end{enumerate}
+
+\begin{figure}
+      \centering
+      \begin{lstlisting}
+$ traceroute google.ca
+...
+      \end{lstlisting}
+      \caption[]{Traceroute du PC1 au PC2 suite à la modification du cout du lien entre R1 et R2.}
+      \label{fig:traceroute-pc1-pc2}
+\end{figure}
+
+Nous avons maintenant désactivé le lien entre R1 et R3.
+
+\begin{enumerate}
+      \item La transmission des paquets a été / n'a pas été interrompue lors du changement de lien.
+      \item Les paquets se sont mis / ne se sont pas mis à passer par un chemin alternatif suite à la
+            coupure du lien. La séquence de réponses ICMP qui en témoigne est présentée à la figure~\ref{fig:ping-pc1-pc2-coupure}.
+      \item Le chemin maintenant emprunté par les paquets entre PC1 et PC2 est... comme en témoigne la sortie
+            de la commande \texttt{traceroute} présentée à la figure~\ref{fig:traceroute-pc1-pc2-coupure}.
+\end{enumerate}
+
+\begin{figure}
+      \centering
+      \begin{lstlisting}
+$ ping google.ca
+...
+      \end{lstlisting}
+      \caption[]{Ping du PC1 au PC2 avant et suite à la coupure du lien entre R1 et R3.}
+      \label{fig:ping-pc1-pc2-coupure}
+\end{figure}
+
+\begin{figure}
+      \centering
+      \begin{lstlisting}
+$ traceroute google.ca
+...
+      \end{lstlisting}
+      \caption[]{Traceroute du PC1 au PC2 suite à la coupure du lien entre R1 et R3.}
+      \label{fig:traceroute-pc1-pc2-coupure}
+\end{figure}
+
+    
+\end{document}
