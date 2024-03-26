@@ -64,7 +64,7 @@ Notre plan d'adressage est présenté dans le tableau~\ref{tab:plan-adressage}.
 \begin{enumerate}
       \item La configuration de mon routeur R1 est présentée à la figure~\ref{fig:ipv4-config-r1}. La configuration
             de mon routeur R2 est présentée à la figure~\ref{fig:ipv4-config-r2}.
-      \item Les routes statiques cofigurées sur PC1 et PC2 sont présentées à la figure~\ref{fig:routes-pc1-pc2}.
+      \item Les routes statiques configurées sur PC1 et PC2 sont présentées à la figure~\ref{fig:routes-pc1-pc2}.
       \item  Le résultat du \texttt{ping} entre PC1 et PC2 est présenté à la figure~\ref{fig:ping-pc1-pc2}.
 \end{enumerate}
 
@@ -125,7 +125,7 @@ Mon plan d'adressage IPv6 est présenté dans le tableau~\ref{tab:plan-adressage
 \begin{enumerate}
       \item La configuration de mon routeur R1 est présentée à la figure~\ref{fig:ipv6-config-r1}. La configuration
             de mon routeur R2 est présentée à la figure~\ref{fig:ipv6-config-r2}.
-      \item Les routes statiques cofigurées sur PC1 et PC2 sont présentées à la figure~\ref{fig:ipv6-routes-pc1-pc2}.
+      \item Les routes statiques configurées sur PC1 et PC2 sont présentées à la figure~\ref{fig:ipv6-routes-pc1-pc2}.
       \item  Le résultat du \texttt{ping} entre PC1 et PC2 est présenté à la figure~\ref{fig:ping6-pc1-pc2}.
 \end{enumerate}
 
@@ -173,10 +173,10 @@ $ ip route
 
 \section*{Routage OSPF}
 
-Le tableau~\ref{tab:plan-adressage} a été augmenté pour contenie les adresses des interfaces
+Le tableau~\ref{tab:plan-adressage} a été augmenté pour contenir les adresses des interfaces
 du routeur R3.
 
-Avant de pousuivre, nous nous sommes assurés que les routes par défaut on été retirées.
+Avant de poursuivre, nous nous sommes assurés que les routes par défaut ont été retirées.
 
 \subsection*{OSPFv2}
 
@@ -244,12 +244,12 @@ $ show ip route
 \subsection*{Routage et changement de lien}
 
 \begin{enumerate}
-      \item  Suite à l'ajout du délais, la route utilisée pour atteindre le PC2 est...
+      \item  Suite à l'ajout du délai, la route utilisée pour atteindre le PC2 est...
       \item Le temps d'aller-retour entre PC1 et PC2 est initialement...
-      \item À partir de la table de routage de R2, nous observons que le cout du lien pour rejoindre 
+      \item À partir de la table de routage de R2, nous observons que le coût du lien pour rejoindre 
             le réseau du PC1 est...
-      \item Il faudrait un cout de ... pour que le lien passant par R3 soit utilisé.
-      \item Suite à la modification du cout, le délais a / n'a pas diminué. On peut expliquer cela par...
+      \item Il faudrait un coût de ... pour que le lien passant par R3 soit utilisé.
+      \item Suite à la modification du coût, le délai a / n'a pas diminué. On peut expliquer cela par...
       \item Les paquets passent / ne passent maintenant (toujours pas) par R3 comme en témoigne la sortie
             de la commande \texttt{traceroute} présentée à la figure~\ref{fig:traceroute-pc1-pc2}.
 \end{enumerate}
@@ -260,7 +260,7 @@ $ show ip route
 $ traceroute google.ca
 ...
       \end{lstlisting}
-      \caption[]{Traceroute du PC1 au PC2 suite à la modification du cout du lien entre R1 et R2.}
+      \caption[]{Traceroute du PC1 au PC2 suite à la modification du coût du lien entre R1 et R2.}
       \label{fig:traceroute-pc1-pc2}
 \end{figure}
 
