@@ -1,0 +1,90 @@
+\documentclass[]{article}
+\usepackage[french]{babel}
+\usepackage[autolanguage]{numprint}
+\usepackage[T1]{fontenc}
+\usepackage{hyphenat}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{hyperref,graphicx, caption} 
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+\title{Projet 4 -- Analyse de flux TCP}
+\author{Équipe 0: Étienne et Florent Parent} % TODO: mettre votre nom
+\date{date de remise} % TODO: mettre la date de remise
+
+\begin{document}
+
+\maketitle
+
+\section*{Analyse de flux TCP dans Wireshark}
+
+\subsection*{Établissement de la connexion TCP}
+
+\begin{enumerate}
+      \item L'adresse IP du client est \texttt{X.X.X.X} et le numéro de port du client est le
+            \texttt{XXXX}. L'adress IP du serveur est \texttt{X.X.X.X} et le numéro de port du
+            serveur est le \texttt{XXXX}.
+      \item Le numéro de séquence du paquet SYN utilisé par le client pour établir la connexion
+            est le \texttt{XXXX}. Nous avons pu identifier que c'était un paquet SYN parce que...
+      \item Le numéro de séquence du paquet SYN-ACK utilisé par le serveur pour confirmer l'établissement
+            de la connexion est le \texttt{XXXX}. Nous avons pu identifier que c'était un paquet SYN parce que...
+      \item Le numéro d'accusé de réception dans le paquet SYN-ACK utilisé par le serveur pour confirmer
+            l'établissement de la connexion est le \texttt{XXXX}. La valeur du champ ACK représente...
+
+      \item Il y a / il n'y a pas d'options TCP échangées lors de l'établissement de la connexion. S'il
+            y en a, les voici:
+            \begin{itemize}
+                  \item Option 1: cette option est...
+                  \item Option 2: cette option sert à...
+                  \item Option 3: foobar
+            \end{itemize}
+      
+      \item La valeur du MSS du client est \texttt{XXXX} et la valeur du MSS du serveur est \texttt{XXXX}.
+            Le client détermine le MSS en... Le MTU est ainsi de \texttt{XXXX} octets.
+      \item Au paquet \#3, la taille de la fenêtre de réception annoncée par le client est de \texttt{XXXX}
+            octets. Une option \textit{Window Scale} est utilisée / n'est pas utilisée. Sa valeur est de...
+      \item Au paquet \#4, la taille de la fenêtre de réception annoncée par le serveur est de \texttt{XXXX}
+            octets. Une option \textit{Window Scale} est utilisée / n'est pas utilisée. Sa valeur est de...
+            La taille de la fenêtre annoncée par le serveur est / n'est pas la même que celle annoncée par
+            le client.
+\end{enumerate}
+
+\subsection*{Taux de transmission}
+
+\begin{enumerate}
+      \item La taille des données transportées dans chacun des segments TCP est de texttt{XXXX} octets.
+            La taille correspond / ne correspond pas à la taille du MSS parce que...
+
+      \item \texttt{XX} segments sont envoyés sans attendre d'accusé de réception. Cela représente \texttt{XX}
+            octets.
+      \item Le numéro du segment ACK est le \texttt{XXXX}. Le temps d'aller-retour est ainsi de ...
+      \item Le taux de transmission de la première séquence est de \texttt{XXXX} Mbit/s.
+      \item Le taux de transmission moyen de toute la capture est de \texttt{XXXX} Mbit/s. Voici les détails
+            de nos calculs:
+            \begin{itemize}
+                  \item Temps total de la capture: \texttt{XXXX} secondes
+                  \item $x = 3$
+                  \item $y = x/4$
+            \end{itemize}
+      \item Comparaisons des taux de transmission moyens... Au début de la transmission, le client est limité
+            par... parce que...
+\end{enumerate}
+
+\section*{Contrôle de congestion et contrôle de flux}
+
+\begin{enumerate}
+      \item Voici notre analyse détaillée du graphique...
+      \item Voici un changement de configuration qui pourrait améliorer le taux de transmission ainsi que nos
+            justifications.
+\end{enumerate}
+
+\end{document}
